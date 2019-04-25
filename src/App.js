@@ -54,17 +54,18 @@ class App extends React.Component {
 
     try {
       const res = await client
-        .api(`/me/drive/items/${videoItemId}?select=@microsoft.graph.downloadUrl`) // You must to use 'select' instead of '$select' to get downloadUrl
-        .select("name", "id", "video", "file")
+        .api(`/me/drive/items/${videoItemId}?select=@microsoft.graph.downloadUrl,name,id,video,file`) // You must to use 'select' instead of '$select' to get downloadUrl
+        // .select("name", "id", "video", "file")
         .get();
 
+      const video = res.video;
       this.setState({
         selectedVideo: {
-          height: res.video.height,
-          width: res.video.width,
+          height: video.height,
+          width: video.width,
           type: res.file.mimeType,
           url: res['@microsoft.graph.downloadUrl'],
-          startTime: (43 * 60 + 36) * Math.random()
+          startTime: (video.duration || (43 * 60 + 36) * 1000) / 1000 * Math.random()
         }
       });
     } catch (error) {
