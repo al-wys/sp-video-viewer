@@ -23,12 +23,12 @@ class App extends React.Component {
           authority={process.env.REACT_APP_AUTHORITY}
           appId={process.env.REACT_APP_APP_CLIENT_ID}
           onAuthProviderChanged={initGraphClientWithAutuProvider}
-          onSignedIn={this.loadVideos}
+          onSignedIn={this._loadVideos}
         />
 
         <VideoList
           videos={this.state.videos}
-          onSelectedItemIdChanged={this.playVideo}
+          onSelectedItemIdChanged={this._playVideo}
         />
 
         <VideoPlayer video={this.state.selectedVideo} />
@@ -36,7 +36,7 @@ class App extends React.Component {
     );
   }
 
-  loadVideos = async () => {
+  _loadVideos = async () => {
     const client = getGraphClient();
 
     try {
@@ -47,7 +47,7 @@ class App extends React.Component {
     }
   }
 
-  playVideo = async (videoItemId) => {
+  _playVideo = async (videoItemId) => {
     this.setState({ selectedVideo: null });
 
     const client = getGraphClient();

@@ -32,24 +32,24 @@ export default class VideoList extends React.Component {
 
     componentDidMount() {
         if (this.props.onSelectedItemIdChanged) {
-            this.setEvent();
+            this._setEvent();
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.videos !== this.props.videos) {
-            this.setEvent();
+            this._setEvent();
         }
 
         if (prevProps.onSelectedItemIdChanged !== this.props.onSelectedItemIdChanged) {
             document.querySelectorAll('table tr td button[video-item-id]').forEach(btn => btn.removeEventListener('click'));
             if (this.props.onSelectedItemIdChanged) {
-                this.setEvent();
+                this._setEvent();
             }
         }
     }
 
-    setEvent() {
+    _setEvent() {
         const onSelectedItemIdChanged = this.props.onSelectedItemIdChanged;
 
         document.querySelectorAll('table tr td button[video-item-id]').forEach(btn => btn.addEventListener('click', function () {

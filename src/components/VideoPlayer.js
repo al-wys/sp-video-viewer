@@ -12,14 +12,14 @@ export default class VideoPlayer extends React.Component {
     }
 
     componentDidUpdate() {
-        this.setStartTime();
+        this._setStartTime();
     }
 
     componentDidMount() {
-        this.setStartTime()
+        this._setStartTime()
     }
 
-    setStartTime() {
+    _setStartTime() {
         let startTime = this.props.video;
         if (startTime && (startTime = startTime.startTime)) {
             const videoEle = document.querySelector('video');

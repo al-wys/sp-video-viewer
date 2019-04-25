@@ -34,7 +34,7 @@ export default class Auth extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        this.setEvent();
+        this._setEvent();
 
         if (this.state.isSignedIn === 1 && this.state.isSignedIn !== prevState.isSignedIn) {
             if (this.props.onAuthProviderChanged) {
@@ -51,7 +51,7 @@ export default class Auth extends React.Component {
     //     this.setEvent();
     // }
 
-    setEvent() {
+    _setEvent() {
         const that = this;
 
         if (this.state.isSignedIn === 1) {
