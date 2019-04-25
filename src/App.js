@@ -3,6 +3,7 @@ import './App.css';
 import Auth from './components/Auth';
 import { initGraphClientWithAutuProvider, getGraphClient } from './GraphClient';
 import VideoList from './components/VideoList';
+import VideoPlayer from './components/VideoPlayer';
 
 class App extends React.Component {
   constructor() {
@@ -15,8 +16,6 @@ class App extends React.Component {
   }
 
   render() {
-    let video = this.state.selectedVideo;
-
     return (
       <div className="App">
         <Auth
@@ -32,26 +31,9 @@ class App extends React.Component {
           onSelectedItemIdChanged={this.playVideo}
         />
 
-        {video ? (
-          <video controls autoPlay height={video.height} width={video.width}>
-            <source preload="auto" type={video.type} src={video.url}></source>
-          </video>
-        ) : <div></div>}
+        <VideoPlayer video={this.state.selectedVideo} />
       </div>
     );
-  }
-
-  componentDidUpdate() {
-    let startTime = this.state.selectedVideo;
-    if (startTime && (startTime = startTime.startTime)) {
-      const videoEle = document.querySelector('video');
-      if (videoEle) {
-        // videoEle.removeEventListener('loadedmetadata');
-        videoEle.addEventListener('loadedmetadata', function () {
-          this.currentTime = startTime;
-        }, false);
-      }
-    }
   }
 
   loadVideos = async () => {
