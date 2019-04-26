@@ -7,7 +7,6 @@ export default class VideoPlayer extends React.Component {
         return video ? (
             <video controls autoPlay height={video.height} width={video.width} onLoadedMetadata={(e) => {
                 e.target.currentTime = video.startTime;
-                console.log(e.target);
             }}>
                 <source preload="auto" type={video.type} src={video.url}></source>
             </video>
