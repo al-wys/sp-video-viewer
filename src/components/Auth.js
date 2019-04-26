@@ -36,7 +36,7 @@ export default class Auth extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.state.isSignedIn === 1 && this.state.isSignedIn !== prevState.isSignedIn) {
             if (this.props.onAuthProviderChanged) {
-                this.props.onAuthProviderChanged(new MSALAuthenticationProvider(this.props.appId, this.props.scopes));
+                this.props.onAuthProviderChanged(new MSALAuthenticationProvider(this._userAgentApplication, this.props.scopes));
             }
 
             if (this.props.onSignedIn) {
