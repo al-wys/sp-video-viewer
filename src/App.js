@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Auth
-          scopes={["Files.Read", "Files.ReadWrite", "Files.Read.All", "Files.ReadWrite.All", "Sites.Read.All", "Sites.ReadWrite.All"]}
+          scopes={["Files.Read", "Files.Read.All", "Sites.Read.All"]}
           authority={process.env.REACT_APP_AUTHORITY}
           appId={process.env.REACT_APP_APP_CLIENT_ID}
           onAuthProviderChanged={initGraphClientWithAutuProvider}
